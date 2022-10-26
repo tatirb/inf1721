@@ -13,7 +13,7 @@ def find_zero(state_list):
         for j in range(len(state_list[i])):
             if state_list[i][j] == 0:
                 return (i, j)
-
+# TAREFA 1
 def find_all_states(graph, states, goal_state):
     j = 0
     state_lists = copy.deepcopy(states)
@@ -44,14 +44,39 @@ def find_all_states(graph, states, goal_state):
         state_list = copy.deepcopy(state_lists[j])
         x1, y1 = find_zero(state_list)
     return graph, states
-                
+
+# TAREFA 2
+def BFS(G, s):
+    visited = []
+    L = []
+    visited.append(s)    
+    L.append(s)
+    i = 0
+    while L:
+        m = L.pop(0)
+        for v in G[m]:
+            if v not in visited:
+                L.append(v)
+                visited.append(v)
+    return visited
+
 initial_state = [[1,2,3],[0,4,6],[7,5,8]]
-goal_state = [[1,2,3],[4,5,6],[7,8,0]]
 states = [initial_state]
 graph = {0:[]}
+
+# Testes goal_state
+#goal_state = [[1,2,3],[4,5,6],[7,8,0]]
+goal_state = [[1,2,3],[4,0,6],[7,5,8]]
+
+# CHAMADA TAREFA 1
 graph_res, states_res = find_all_states(graph, states, goal_state)
 print(graph_res)
 print()
 for m in range(0, len(states_res)):
     print("{0} -  {1}".format(m, states_res[m]))
     print()
+
+# CHAMADA TAREFA 2
+visited = BFS(graph_res, 1)
+if len(visited) == len(states_res):
+    print("Número de componentes conexos: ", len(visited))
