@@ -65,6 +65,13 @@ def BFS(G, s):
                 visited.append(v)
     return visited
 
+# TAREFA 3
+def configuracao_inicial(goal_state):
+    G, states = find_all_states(graph, initial_state)
+    visited = BFS(G, s)
+    m = len(visited)-1
+    return states[m]
+
 initial_state = [[1,2,3],[0,4,6],[7,5,8]]
 graph = {0:[]}
 
@@ -82,3 +89,5 @@ if len(visited) == len(states_res):
 
 # CHAMADA TAREFA 3
 graph_3 = [[1,2,3],[4,5,6],[7,8,0]]
+ini_state = configuracao_inicial(goal_state)
+print_state(ini_state)
